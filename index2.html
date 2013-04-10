@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="container" ng-controller="Controller">
+    <div class="row">
+        <form name="form" novalidate>
+        <div class="span5">
+            <fieldset>
+                <legend style="margin-bottom:15px;">Keyboard Config Setup</legend>
+                <label style="margin-top:20px;" >Pull Key (Bow)</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="pullKey"
+                       placeholder=","
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Switch to Weapon (From Bow)</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="switchKey"
+                       placeholder="b"
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Attack Quickbar Button</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="attackKey"
+                       placeholder="1"
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Bludgeon Quickbar Button</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="bludKey"
+                       placeholder="2"
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Contussion Quickbar Button</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="contKey"
+                       placeholder="3"
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Sit (Rest) Key</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="restKey"
+                       placeholder="x"
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Face Key</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="faceKey"
+                       placeholder="f"
+                       required autocomplete="off">
+                <label style="margin-top:5px;" >Sprint Key</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="sprintKey"
+                       placeholder="v"
+                       required autocomplete="off">
+            </fieldset>
+        </div>
+        <div class="span7">
+            <fieldset>
+                <legend style="margin-bottom:15px;">Keyboard Config Setup</legend>
+
+            </fieldset>
+        </div>
+        </form>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="span5 offset5">
+            <button ng-click="checkshow()" ng-disabled="form.$invalid">Show / Hide</button>
+            <button name="testinput" ng-disabled="form.$invalid">Copy</button>
+
+        </div>
+
+    </div>
+<div class="row" style="margin-top:40px;">
+    <div class="span12">
+    <pre id="prer" ng-show="doshow && !form.$invalid">
+SetActiveWindow Dark Age of Camelot &copy; 2001-2011 Electronic Arts Inc. All Rights Reserved.
+//1366x768 native screen res 800x600 ingame..for gateway laptop
+//desktop is 1280x960 in windowed for bot
+Constants
+  pullkey= {{pullKey}} //enter pullkey i.e. hotbar 1 would be 1
+  switch={{switchKey}}
+  attackkey= {{attackKey}} //enter attack key
+  specialattackkey= {{bludKey}} //enter special attack key
+  specialattackkey2= {{contKey}}
+  restkey= {{restKey}} //your sit key
+  tabkey={TAB}
+  facekey={{faceKey}}
+  sprintkey={{sprintKey}}
+  // do no edit below
+  fullhp=1
+  havetarget=0
+  isengaged=0
+  isstanding=1
+  RandomInteger = 0
+  Maxval = 0
+  Minval = 0
+  minmp=1
+  mobhp=1
+  endo=1
+  //leave the 7 above vars alone
+End
+Procedure setactive
+  SetActiveWindow Dark Age of Camelot &copy; 2001-2011 Electronic Arts Inc. All Rights Reserved.
+End
+Procedure removepopup
+  IsWindow Sponsored session
+    // Do these commands if true
+    SetActiveWindow Sponsored session
+    delay 1000
+    keys {return}
+    delay 1000
+    SetActiveWindow Dark Age of Camelot &copy; 2001-2011 Electronic Arts Inc. All Rights Reserved.
+  Else
+  End
+end
+Procedure checkminmp
+  loadrgb 1613, 937
+  if {rgbgreen} < 120
+    setconst minmp=0
+  else
+    setconst minmp=1
+  end //end of if
+End
+Procedure hastarget
+  loadrgb 1561, 974
+  if {rgbred} < 20
+    setconst havetarget=0
+  else
+    setconst havetarget=1
+  end //end of if
+End //end of hastarget
+Procedure checkengaged
+  loadrgb 1620, 886
+  if {rgbblue} > 10
+    setconst isengaged=0
+  else
+    setconst isengaged=1
+  end
+End //end checkengaged
+Procedure checkfullhp
+  loadrgb 1666,912
+  if {rgbred} <200
+    setconst fullhp=0
+  else
+    setconst fullhp=1
+  end
+End// end of checkfullhp
+Procedure checkmobhp
+  loadrgb 1675,976
+  if {rgbred} <100
+    setconst mobhp=0 //if mob hp less then or 30%
+  else
+    setconst mobhp=1 //if mob hp is full then it is 1
+  end
+End// end of checkfullhp
+Procedure checkendo
+  loadrgb 1666,925
+  if {rgbgreen} >100
+    setconst endo=1 //has enough endo
+  else
+    setconst endo=0 //if mob hp is full then it is 1
+  end
+end
+Delay 2000
+While 1=1
+  Call setactive
+  call removepopup
+  Call checkHP
+  call removepopup
+  Call setactive
+  Call Pull
+  call removepopup
+  Call setactive
+  Call Fight
+  call removepopup
+  Call setactive
+End// end of main while loop
+Procedure checkHP
+  Call checkfullhp
+  Call checkendo
+  if $fullhp=1 and $endo=1 //has full hp, do nothing
+    if $isstanding=0
+      keydown $restkey 500
+      SetConst ISSTANDING = 1
+      Delay 1000
+      exit
+    else //else of isstandin=0
+      SetConst ISSTANDING = 1
+      Delay 1000
+      exit
+    end
+  else
+    if $isstanding=1//check if istanding=1
+      Call hastarget
+      if $havetarget=1
+        SetConst isstanding=1
+        keydown $restkey 500
+        delay 900
+        keydown $facekey 500
+        while $havetarget=1
+          keydown $specialattackkey 500
+          delay 1000
+          keydown $specialattackkey2 500
+          delay 1500
+          Call hastarget
+        End//end of loop
+      else
+        keydown $restkey 500
+        delay 800
+        keydown $sprintkey 500
+        SetConst ISSTANDING = 0
+      end
+    else
+      Call hastarget
+      if $havetarget=1
+        SetConst isstanding=1
+        keydown $restkey 500
+        delay 900
+        keydown $facekey 500
+        while $havetarget=1
+          keydown $specialattackkey 500
+          delay 1000
+          keydown $specialattackkey2 500
+          delay 1500
+          Call hastarget
+        End//end of loop
+      else
+        keydown $sprintkey 500
+        delay 800
+      end
+    End // end of ifstanding check
+  End // end of full hp check
+  delay 2000 // small delay, then recheck if full hp yet
+  Call checkHP
+End // end of checkHP
+Procedure Pull
+  call removepopup
+  Call hastarget
+  While $havetarget=0
+    keydown $tabkey 500
+    delay 2000
+    call removepopup
+    Call hastarget
+  End //end of while havetarget
+  Delay 900 //small delay after target is gotten
+End // end of pull
+Procedure Fight
+  call removepopup
+  Call checkengaged
+  Call hastarget
+  if $isengaged=1 //if#1
+    if $havetarget=1
+      Call Attack //calls attack funtion
+    else
+      keydown $attackkey 500 // to disengage
+      exit
+    End
+  else //not engaged else#1
+    if $havetarget=1 //if#2
+      Call Attack
+    else //else#2
+      exit
+    End //end of if#2
+  End //end of if#1
+End //end of fight procedure
+Procedure Attack
+  call removepopup
+  keydown $facekey 500
+  Delay 500
+  Call checkmobhp
+  if $mobhp=1
+    keydown $pullkey 500
+    delay 800
+    keydown $pullkey 500
+    delay 800
+    keydown $pullkey 500
+    delay 4200
+    keydown $switch 500
+    delay 2000
+  end
+  Loop 2
+    keydown $specialattackkey 500
+    delay 600
+    keydown $specialattackkey2 500
+    delay 1000
+  End//end of loop
+  Call Fight
+End //end of attack procedure
+   </pre>
+
+
+    </div>
+
+</div>
+
+
+
+
+</div>
+
+
+</body>
+</html>
