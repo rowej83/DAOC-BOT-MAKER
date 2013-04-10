@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <div class="container" ng-controller="Controller">
@@ -62,10 +63,74 @@
         </div>
         <div class="span7">
             <fieldset>
-                <legend style="margin-bottom:15px;">Keyboard Config Setup</legend>
+                <legend style="margin-bottom:15px;">Color Coordinate Setup</legend>
 
             </fieldset>
         </div>
+            <div class="row">
+            <div class="span3"> <label style="margin-top:20px;" >Target (x-coord.)</label>
+                <input type="text"                                                                         name="test2"
+                       ng-model="targetx"
+                       placeholder=""
+                       required autocomplete="off"></div>
+            <div class="span1"><p style="text-align:center;margin-top:20px;padding-top:30px;">X</p></div>
+            <div class="span3"> <label style="margin-top:20px;" >Target (y-coord.)</label>
+                <input type="text"                                                                        name="test2"
+                       ng-model="targety"
+                       placeholder=""
+                       required autocomplete="off"></div>
+
+                <div class="span3"> <label style="margin-top:5px;" >Engaged (x-coord.)</label>
+                    <input type="text"                                                                         name="test2"
+                           ng-model="engagedx"
+                           placeholder=""
+                           required autocomplete="off"></div>
+                <div class="span1"><p style="text-align:center;margin-top:20px;padding-top:15px;">X</p></div>
+                <div class="span3"> <label style="margin-top:5px;" >Engaged (y-coord.)</label>
+                    <input type="text"                                                                         name="test2"
+                           ng-model="engagedy"
+                           placeholder=""
+                           required autocomplete="off"></div>
+
+                <div class="span3"> <label style="margin-top:5px;" >Full-HP (x-coord.)</label>
+                    <input type="text"                                                                       name="test2"
+                           ng-model="fullhpx"
+                           placeholder=""
+                           required autocomplete="off"></div>
+                <div class="span1"><p style="text-align:center;margin-top:20px;padding-top:15px;">X</p></div>
+                <div class="span3"> <label style="margin-top:5px;" >Full-HP (y-coord.)</label>
+                    <input type="text"                                                                        name="test2"
+                           ng-model="fullhpy"
+                           placeholder=""
+                           required autocomplete="off"></div>
+
+                <div class="span3"> <label style="margin-top:5px;" >Full Mob-HP (x-coord.)</label>
+                    <input type="text"                                                                         name="test2"
+                           ng-model="mobhpx"
+                           placeholder=""
+                           required autocomplete="off"></div>
+                <div class="span1"><p style="text-align:center;margin-top:20px;padding-top:15px;">X</p></div>
+                <div class="span3"> <label style="margin-top:5px;" >Full Mob-HP (y-coord.)</label>
+                    <input type="text"                                                                        name="test2"
+                           ng-model="mobhpy"
+                           placeholder=""
+                           required autocomplete="off"></div>
+
+                <div class="span3"> <label style="margin-top:5px;" >Min. Endo (x-coord.)</label>
+                    <input type="text"                                                                        name="test2"
+                           ng-model="minendox"
+                           placeholder=""
+                           required autocomplete="off"></div>
+                <div class="span1"><p style="text-align:center;margin-top:20px;padding-top:15px;">X</p></div>
+                <div class="span3"> <label style="margin-top:5px;" >Min. Endo (y-coord.)</label>
+                    <input type="text"                                                                        name="test2"
+                           ng-model="minendoy"
+                           placeholder=""
+                           required autocomplete="off"></div>
+
+            </div>
+
+
         </form>
     </div>
     <div class="row" style="margin-top:30px;">
@@ -119,16 +184,8 @@ Procedure removepopup
   Else
   End
 end
-Procedure checkminmp
-  loadrgb 1613, 937
-  if {rgbgreen} < 120
-    setconst minmp=0
-  else
-    setconst minmp=1
-  end //end of if
-End
 Procedure hastarget
-  loadrgb 1561, 974
+  loadrgb {{targetx}}, {{targety}}
   if {rgbred} < 20
     setconst havetarget=0
   else
@@ -136,7 +193,7 @@ Procedure hastarget
   end //end of if
 End //end of hastarget
 Procedure checkengaged
-  loadrgb 1620, 886
+  loadrgb {{engagedx}}, {{engagedy}}
   if {rgbblue} > 10
     setconst isengaged=0
   else
@@ -144,7 +201,7 @@ Procedure checkengaged
   end
 End //end checkengaged
 Procedure checkfullhp
-  loadrgb 1666,912
+  loadrgb {{fullhpx}}, {{fullhpy}}
   if {rgbred} <200
     setconst fullhp=0
   else
@@ -152,7 +209,7 @@ Procedure checkfullhp
   end
 End// end of checkfullhp
 Procedure checkmobhp
-  loadrgb 1675,976
+  loadrgb {{mobhpx}}, {{mobhpy}}
   if {rgbred} <100
     setconst mobhp=0 //if mob hp less then or 30%
   else
@@ -160,7 +217,7 @@ Procedure checkmobhp
   end
 End// end of checkfullhp
 Procedure checkendo
-  loadrgb 1666,925
+  loadrgb {{minendox}}, {{minendoy}}
   if {rgbgreen} >100
     setconst endo=1 //has enough endo
   else
