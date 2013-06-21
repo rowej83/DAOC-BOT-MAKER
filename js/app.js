@@ -30,7 +30,7 @@ $scope.doshow=false;
   }; **/
   
     $scope.resetform = function() {
-    $scope.bot = angular.copy($scope.master);
+     $scope.bot = angular.copy($scope.master);
   };
    $scope.selectall = function() {
    //alert('happened');
